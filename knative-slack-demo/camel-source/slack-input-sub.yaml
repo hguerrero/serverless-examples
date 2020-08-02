@@ -1,0 +1,14 @@
+apiVersion: messaging.knative.dev/v1beta1
+kind: Subscription
+metadata:
+  name: slack-input-sub
+spec:
+  channel:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: KafkaChannel
+    name: slack-input
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: translate-service

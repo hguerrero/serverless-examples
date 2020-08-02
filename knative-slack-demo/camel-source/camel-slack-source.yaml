@@ -1,0 +1,29 @@
+apiVersion: sources.knative.dev/v1alpha1
+kind: CamelSource
+metadata:
+  name: camel-slack-source
+spec:
+  sink:
+    ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: KafkaChannel
+      name: slack-input
+  source:
+    integration:      
+      configuration:
+        - type: secret
+          value: translate-config
+      dependencies:
+        - camel:jackson
+        - camel:log
+    flow:
+      from:
+        uri: 'slack:general'
+        parameters:
+          token: '{{slack.token}}'
+          maxResults: 1
+        steps:
+          - log:
+              message: 'Message: ${body.text} from ${body.user}'
+          - marshal:
+              json: {}
