@@ -17,4 +17,4 @@ spec:
     value.converter.apicurio.registry.converter.deserializer: io.apicurio.registry.utils.serde.JsonSchemaKafkaDeserializer
     camel.source.endpoint.maxResults: 1
     camel.source.path.channel: general
-    camel.source.endpoint.token: xoxb-1086662136182-1078705155239-264xnfcdnlSlNIec1yFSv1W3
+    camel.source.endpoint.token: <TOKEN>
